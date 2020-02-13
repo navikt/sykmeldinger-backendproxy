@@ -2,8 +2,8 @@
 
 # sykmeldinger-backendproxy
 
-## Om syfoproxy
-Denne appen setter opp en proxy app med nginx. Prosjektet bygger og deployer et docker image som heter `syfoproxy` dette
+## Om sykmeldinger-backendproxy
+Denne appen setter opp en proxy app med nginx. Prosjektet bygger og deployer et docker image som heter `sykmeldinger-backendproxy` dette
 imaget kjører opp en enkel nginx server som proxyer alle kall videre til en api-gateway url med en gateway key i header.
 
 ## Oppsett
