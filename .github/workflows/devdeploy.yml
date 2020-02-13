@@ -29,4 +29,4 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-sbs
-          RESOURCE: sykmeldinger-backend/nais-dev.yaml
+          RESOURCE: naiserator-dev.yaml
