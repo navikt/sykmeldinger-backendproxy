@@ -1,0 +1,32 @@
+name: Deploy to dev
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/syfoproxy:${{ github.sha }}
+jobs:
+  build-push-deploy:
+    name: Checkout code and create docker tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Build Docker image
+        run: |
+          docker build -t ${IMAGE} .
+      - name: Login to Github Package Registry
+        env:
+          DOCKER_USERNAME: x-access-token
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin docker.pkg.github.com
+      - name: Push Docker image
+        run: docker push ${IMAGE}
+      - name: deploy sykmeldinger-backendproxy to dev-sbs
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-sbs
+          RESOURCE: sykmeldinger-backend/nais-dev.yaml
