@@ -33,6 +33,12 @@ spec:
     cpuThresholdPercentage: 90
   vault:
     enabled: true
+    paths:
+      - kvPath: /apikey/apigw/prod/sykmeldinger-backend-api/sykmeldinger-backendproxy
+        mountPath: /secrets/apikey
   ingresses:
     - "https://sykmeldinger-backendproxy.nais.oera.no"
     - "https://sykmeldinger-backendproxy.nav.no"
+  env:
+    - name: SERVICE_GATEWAY_URL
+      value: https://api-gw.oera.no/sykmeldinger-backend-api/
