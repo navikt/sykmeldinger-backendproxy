@@ -30,9 +30,9 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-sbs
           RESOURCE: naiserator-dev.yaml
-#      - name: deploy sykmeldinger-backend to prod-sbs
-#        uses: nais/deploy/actions/deploy@v1
-#        env:
-#          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-#          CLUSTER: prod-sbs
-#          RESOURCE: naiserator-prod.yaml
+      - name: deploy sykmeldinger-backend to prod-sbs
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-sbs
+          RESOURCE: naiserator-prod.yaml
